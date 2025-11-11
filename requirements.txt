@@ -1,0 +1,8 @@
+streamlit
+librosa
+parselmouth-praat
+scikit-learn
+xgboost
+pandas
+numpy
+scipy
