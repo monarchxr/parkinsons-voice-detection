@@ -1,0 +1,7 @@
+dont mind this, i just forget some stuff sometimes so i just gotta write it down for future reference
+
+to run app.py
+do
+streamlit run app.py
+
+thats it for now

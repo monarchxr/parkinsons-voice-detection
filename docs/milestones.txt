@@ -1,0 +1,2 @@
+milestone 1 - record audio [done]
+milestone 2 - preprocess recorded audio [in-progress]
