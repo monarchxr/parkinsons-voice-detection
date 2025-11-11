@@ -1,8 +1,9 @@
 streamlit
 librosa
-parselmouth-praat
+praat-parselmouth
 scikit-learn
 xgboost
 pandas
 numpy
 scipy
+soundfile
