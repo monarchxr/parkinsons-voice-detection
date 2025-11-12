@@ -10,6 +10,7 @@ st.set_page_config(page_title="Parkinson's Risk Prediction")
 st.title("Parkinson's Voice Screening")
 st.write("### Step 1: Record your voice")
 st.write("Say 'aaaah' steadily for 3-5 seconds")
+st.write("Repeat 3-4 times")
 st.info("Tip: If recording stops early, try varying your volume slightly")
 
 record_audio = st.audio_input("Record a voice message, testing!")
