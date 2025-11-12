@@ -11,8 +11,8 @@ def extract_pitch_features(sound):
     pitch = call(sound, "To Pitch", 0.0, 75, 500)
 
     mean_f0 = call(pitch, "Get mean", 0, 0, "Hertz")
-    max_f0 = call(pitch, "Get maximum", 0, 0, "Hertz")
-    min_f0 = call(pitch, "Get minimum", 0, 0, "Hertz")
+    max_f0 = call(pitch, "Get maximum", 0, 0, "Hertz", "parabolic")
+    min_f0 = call(pitch, "Get minimum", 0, 0, "Hertz", "parabolic")
 
     return {
     'MDVP:Fo(Hz)': mean_f0,
@@ -28,7 +28,7 @@ def extract_jitter_features(sound):
     point_process = call(sound, "To PointProcess (periodic, cc)", 75, 500)
 
     local_jitter = call(point_process, "Get jitter (local)", 0, 0, 0.0001, 0.02, 1.3)
-    local_abs_jitter = call(point_process, "Get jitter (absolute)", 0, 0, 0.0001, 0.02, 1.3)
+    local_abs_jitter = call(point_process, "Get jitter (local, absolute)", 0, 0, 0.0001, 0.02, 1.3)
 
     rap_jitter = call(point_process, "Get jitter (rap)", 0, 0, 0.0001, 0.02, 1.3)
 
@@ -37,11 +37,11 @@ def extract_jitter_features(sound):
     ddp_jitter = rap_jitter*3
 
     return {
-    'MDVP:Jitter(%)': local_jitter,
-    'MDVP:Jitter(Abs)': local_abs_jitter,
-    'MDVP:RAP': rap_jitter,
-    'MDVP:PPQ': ppq_jitter,
-    'Jitter:DDP': ddp_jitter
+    'MDVP:Jitter(%)': float(local_jitter),
+    'MDVP:Jitter(Abs)': float(local_abs_jitter),
+    'MDVP:RAP': float(rap_jitter),
+    'MDVP:PPQ': float(ppq_jitter),
+    'Jitter:DDP': float(ddp_jitter)
     }
 
 def extract_shimmer_features(sound):
@@ -64,12 +64,12 @@ def extract_shimmer_features(sound):
     dda_shimmer = apq3_shimmer*3
 
     return {
-    'MDVP:Shimmer': local_shimmer,
-    'MDVP:Shimmer(dB)': local_shimmer_dB,
-    'Shimmer:APQ3': apq3_shimmer,
-    'Shimmer:APQ5': apq5_shimmer,
-    'MDVP:APQ': apq11_shimmer,
-    'Shimmer:DDA': dda_shimmer
+    'MDVP:Shimmer': float(local_shimmer),
+    'MDVP:Shimmer(dB)': float(local_shimmer_dB),
+    'Shimmer:APQ3': float(apq3_shimmer),
+    'Shimmer:APQ5': float(apq5_shimmer),
+    'MDVP:APQ': float(apq11_shimmer),
+    'Shimmer:DDA': float(dda_shimmer)
     }
 
 
@@ -88,8 +88,8 @@ def extract_harmonics_features(sound):
     nhr = 10**(-hnr/10) #cant use 1/hnr directly
 
     return{
-        'HNR': hnr,
-        'NHR': nhr
+        'HNR': float(hnr),
+        'NHR': float(nhr)
     }
 
 def extract_features(audio, sr):
