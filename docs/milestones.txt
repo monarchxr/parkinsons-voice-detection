@@ -1,4 +1,5 @@
 milestone 1 - record audio [done]
 milestone 2 - preprocess recorded audio [done]
 milestone 3 - feature extraction [done]
-milestone 4 - integrate all and test [in-progress]
+milestone 4 - integrate all and test [done]
+milestone 5 - work on training model on training dataset and test it [in-progress]
