@@ -1,0 +1,3 @@
+Logistic Regression, no preprocessing => 0.72 accuracy, 0.74 f1 (but bias towards PD)
+Logistic Regression, scaling + balancing => 0.64 accuracy, 0.64 f1 (better/fair)
+Random Forest => 0.84 accuracy, 0.85 f1 (much better)
