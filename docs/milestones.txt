@@ -1,2 +1,4 @@
 milestone 1 - record audio [done]
-milestone 2 - preprocess recorded audio [in-progress]
+milestone 2 - preprocess recorded audio [done]
+milestone 3 - feature extraction [done]
+milestone 4 - integrate all and test [in-progress]
