@@ -34,7 +34,7 @@ def extract_jitter_features(sound):
 
     ppq_jitter = call(point_process, "Get jitter (ppq5)", 0, 0, 0.0001, 0.02, 1.3)
 
-    ddp_jitter = rap_jitter*3
+    ddp_jitter = float(rap_jitter)*3
 
     return {
     'MDVP:Jitter(%)': float(local_jitter),
@@ -51,15 +51,40 @@ def extract_shimmer_features(sound):
 
     point_process = call(sound, "To PointProcess (periodic, cc)", 75, 500)
 
-    local_shimmer = call([sound,point_process], "Get shimmer (local)", 0, 0, 0.0001, 0.02, 1.3, 1.6)
+    try:
+        local_shimmer = call([sound,point_process], "Get shimmer (local)", 0, 0, 0.0001, 0.02, 1.3, 1.6)
+    except Exception as e:
+        print(f"Local shimmer failed: {e}")
+        local_shimmer = 0.0
+    
+    
+    try:
+        local_shimmer_dB = call([sound,point_process], "Get shimmer (local_dB)", 0, 0, 0.0001, 0.02, 1.3, 1.6)
+    except Exception as e:
+        print(f"Shimmer dB failed: {e}")
+        local_shimmer_dB = 0.0
 
-    local_shimmer_dB = call([sound,point_process], "Get shimmer (local_dB)", 0, 0, 0.0001, 0.02, 1.3, 1.6)
 
-    apq3_shimmer = call([sound,point_process], "Get shimmer (apq3)", 0, 0, 0.0001, 0.02, 1.3, 1.6)
+    try:
+        apq3_shimmer = call([sound,point_process], "Get shimmer (apq3)", 0, 0, 0.0001, 0.02, 1.3, 1.6)
+    except Exception as e:
+        print(f"APQ3 failed: {e}")
+        apq3_shimmer = 0.0
 
-    apq5_shimmer = call([sound,point_process], "Get shimmer (apq5)", 0, 0, 0.0001, 0.02, 1.3, 1.6)
 
-    apq11_shimmer = call([sound,point_process], "Get shimmer (apq11)", 0, 0, 0.0001, 0.02, 1.3, 1.6)
+    try:
+        apq5_shimmer = call([sound,point_process], "Get shimmer (apq5)", 0, 0, 0.0001, 0.02, 1.3, 1.6)
+    except Exception as e:
+        print(f"APQ5 failed: {e}")
+        apq5_shimmer = 0.0
+
+
+    try:
+        apq11_shimmer = call([sound,point_process], "Get shimmer (apq11)", 0, 0, 0.0001, 0.02, 1.3, 1.6)
+    except Exception as e:
+        print(f"APQ11 failed: {e}")
+        apq11_shimmer = 0.0
+
 
     dda_shimmer = apq3_shimmer*3
 
